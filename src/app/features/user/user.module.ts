@@ -5,7 +5,6 @@ import { UserRoutingModule } from './user-routing.module';
 import { CommonModule } from '@angular/common';
 import { StructureModule } from '../structure/structure.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserScreenlistComponent } from './components/user-screenlist/user-screenlist.component';
 import { NgxBootstrapConfirmModule } from 'ngx-bootstrap-confirm';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ChartsModule } from 'ng2-charts';
@@ -19,7 +18,6 @@ import { EditLeaveComponent } from './components/edit-leave/edit-leave.component
 @NgModule({
     declarations: [
         UserComponent,
-        UserScreenlistComponent,
         AdminDashboardComponent,
         EmployeeComponent,
         AddEmployeeComponent,
