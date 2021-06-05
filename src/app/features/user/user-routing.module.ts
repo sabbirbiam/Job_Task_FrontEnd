@@ -2,7 +2,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from '@angular/core';
 import { UserComponent } from './user.component';
-import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
 import { EmployeeComponent } from "./components/employee/employee.component";
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
 import { EditEmployeeComponent } from "./components/edit-employee/edit-employee.component";
@@ -16,7 +15,6 @@ const routes: Routes = [
         path: '', component: UserComponent,
         children: [
             { path: '', redirectTo: 'employee', pathMatch: 'full' },
-            { path: 'dashboard', component: AdminDashboardComponent },
             { path: 'employee', component: EmployeeComponent },
             { path: 'employee/add', component: AddEmployeeComponent },
             { path: 'employee/update', component: EditEmployeeComponent },

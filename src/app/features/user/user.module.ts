@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { StructureModule } from '../structure/structure.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapConfirmModule } from 'ngx-bootstrap-confirm';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
@@ -18,7 +17,6 @@ import { EditLeaveComponent } from './components/edit-leave/edit-leave.component
 @NgModule({
     declarations: [
         UserComponent,
-        AdminDashboardComponent,
         EmployeeComponent,
         AddEmployeeComponent,
         EditEmployeeComponent,
