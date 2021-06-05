@@ -3,50 +3,31 @@
     <div class="col-md-12">
       <div class="card">
         <h6 class="card-header">Add new Leave</h6>
+        <a class="reference-button add-button  mt-1 mb-2 mt-sm-2" id="employeeAdd" mat-raised-button
+          routerLink="/leave">
+          <span>Go Back</span>
+        </a>
         <div class="card-body">
-          <form
-            [formGroup]="saveForm"
-            autocomplete="off"
-            (ngSubmit)="onSubmit()"
-          >
+          <form [formGroup]="saveForm" autocomplete="off" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-md-4">
-                <span
-                  *ngIf="
+                <span *ngIf="
                     saveForm.get('description').touched &&
                     saveForm.get('description').hasError('required')
-                  "
-                  class="text-danger"
-                >
-                  Required description</span
-                >
+                  " class="text-danger">
+                  Required description</span>
                 <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="description"
-                    name="description"
-                    placeholder="First Name"
-                  />
+                  <input type="text" class="form-control" formControlName="description" name="description"
+                    placeholder="First Name" />
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <div class="input-group">
-                    <input
-                      class="form-control"
-                      placeholder="yyyy-mm-dd"
-                      name="strarDate"
-                      formControlName="strarDate"
-                      ngbDatepicker
-                      #d="ngbDatepicker"
-                    />
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="strarDate" formControlName="strarDate"
+                      ngbDatepicker #d="ngbDatepicker" />
                     <div class="input-group-append">
-                      <button
-                        class="btn btn-outline-secondary calendar"
-                        (click)="d.toggle()"
-                        type="button"
-                      ></button>
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                     </div>
                   </div>
                 </div>
@@ -54,20 +35,10 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <div class="input-group">
-                    <input
-                      class="form-control"
-                      placeholder="yyyy-mm-dd"
-                      name="endDate"
-                      formControlName="endDate"
-                      ngbDatepicker
-                      #e="ngbDatepicker"
-                    />
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" formControlName="endDate"
+                      ngbDatepicker #e="ngbDatepicker" />
                     <div class="input-group-append">
-                      <button
-                        class="btn btn-outline-secondary calendar"
-                        (click)="e.toggle()"
-                        type="button"
-                      ></button>
+                      <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
                     </div>
                   </div>
                 </div>
@@ -76,16 +47,9 @@
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <select
-                    class="form-control"
-                    formControlName="leaveType"
-                    name="leaveType"
-                  >
+                  <select class="form-control" formControlName="leaveType" name="leaveType">
                     <option value="">Please Select a Leave Type</option>
-                    <option
-                      *ngFor="let dept of leaveTypeList"
-                      [value]="dept.VALUE"
-                    >
+                    <option *ngFor="let dept of leaveTypeList" [value]="dept.VALUE">
                       {{ dept.TEXT }}
                     </option>
                   </select>
@@ -94,16 +58,9 @@
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <select
-                    class="form-control"
-                    formControlName="employeeId"
-                    name="employeeId"
-                  >
+                  <select class="form-control" formControlName="employeeId" name="employeeId">
                     <option value="">Please Select a Employee</option>
-                    <option
-                      *ngFor="let dept of employeeList"
-                      [value]="dept.id"
-                    >
+                    <option *ngFor="let dept of employeeList" [value]="dept.id">
                       {{ dept.firstName }}
                     </option>
                   </select>

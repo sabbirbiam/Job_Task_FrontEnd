@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/app/shared/services/common.service';
@@ -25,7 +26,8 @@ export class EditLeaveComponent implements OnInit {
     private fb: FormBuilder,
     private commonService: CommonService,
     private confirmationService: NgxBootstrapConfirmService,
-    private dataCom: DataComService
+    private dataCom: DataComService,
+    private router: Router
 
   ) {
     this.leaveTypeList.push({TEXT: "Casual", VALUE: 1});
@@ -101,6 +103,8 @@ export class EditLeaveComponent implements OnInit {
       if (responseData.success) {
         this.commonService.toastSuccess(responseData.message);
         this.saveForm.reset();
+        this.router.navigate(['/leave']); 
+        
         // this.getAllProject();
       }
     });

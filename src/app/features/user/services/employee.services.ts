@@ -20,8 +20,8 @@ export class EmployeeService {
     return this.apiService.request("PUT", 'employee/update-employee', params)
   }
 
-  public deleteProject(id) {
-    return this.apiService.request("DELETE", `Project/ArchiveProjectById/${id}`);
+  public deleteEmployee(id) {
+    return this.apiService.request("DELETE", `employee/delete-employee-by-id/${id}`);
   }
   public assignUserToProject(params) {
     return this.apiService.request("POST", `Project/AssignUserToProject`, params);

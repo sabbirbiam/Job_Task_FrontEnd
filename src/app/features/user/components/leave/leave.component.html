@@ -14,6 +14,7 @@
                 <tr>
                   <th style="width: 10px">Serial</th>
                   <th>Description</th>
+                  <th>Leave Type</th>
                   <th>Start Date</th>
                   <th>End Date</th> 
                   <th>Edit</th>
@@ -24,6 +25,7 @@
                 <tr *ngFor="let leave of leaveList; let i = index">
                   <td>{{ i+1 }}</td>
                   <td>{{ leave.description }}</td> 
+                  <td>{{ leave.leaveType == 1 ? "Casual" : "Sick"}}</td> 
                   <td>{{ leave.strarDate| date }}</td>
                   <td>{{ leave.endDate |date }}</td>
                   <td><button class="btn btn-sm" (click)="onClickEdit(leave)">Edit</button></td>

@@ -20,8 +20,8 @@ export class LeaveService {
     return this.apiService.request("PUT", 'leave/update-leave', params)
   }
 
-  public deleteProject(id) {
-    return this.apiService.request("DELETE", `Project/ArchiveProjectById/${id}`);
+  public deleteLeave(id) {
+    return this.apiService.request("DELETE", `leave/delete-leave-by-id/${id}`);
   }
   public assignUserToProject(params) {
     return this.apiService.request("POST", `Project/AssignUserToProject`, params);

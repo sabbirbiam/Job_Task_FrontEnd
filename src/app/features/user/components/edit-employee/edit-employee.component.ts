@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { Subscription } from 'rxjs';
@@ -23,7 +24,8 @@ export class EditEmployeeComponent implements OnInit {
     private fb: FormBuilder,
     private commonService: CommonService,
     private confirmationService: NgxBootstrapConfirmService,
-    private dataCom: DataComService
+    private dataCom: DataComService,
+    private router: Router,
   ) {
     this.departmentList.push({ TEXT: 'Software', VALUE: 1 });
     this.departmentList.push({ TEXT: 'HR', VALUE: 2 });
@@ -118,7 +120,7 @@ export class EditEmployeeComponent implements OnInit {
       if (responseData.success) {
         this.commonService.toastSuccess(responseData.message);
         this.employeeForm.reset();
-        // this.getAllProject();
+        this.router.navigate(['/employee']); 
       }
     });
   }

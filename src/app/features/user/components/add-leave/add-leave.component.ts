@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { CommonService } from 'src/app/shared/services/common.service';
 import { EmployeeService } from '../../services/employee.services';
@@ -21,7 +22,8 @@ export class AddLeaveComponent implements OnInit {
     private employeeService: EmployeeService,
     private fb: FormBuilder,
     private commonService: CommonService,
-    private confirmationService: NgxBootstrapConfirmService
+    private confirmationService: NgxBootstrapConfirmService,
+    private router: Router
   ) {
     this.leaveTypeList.push({TEXT: "Casual", VALUE: 1});
     this.leaveTypeList.push({TEXT: "Sick", VALUE: 2});
@@ -94,7 +96,7 @@ export class AddLeaveComponent implements OnInit {
       if (responseData.success) {
         this.commonService.toastSuccess(responseData.message);
         this.saveForm.reset();
-        // this.getAllProject();
+        this.router.navigate(['/leave']); 
       }
     });
   }

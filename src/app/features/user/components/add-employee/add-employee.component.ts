@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { CommonService } from 'src/app/shared/services/common.service';
 import { EmployeeService } from '../../services/employee.services';
@@ -17,6 +18,7 @@ export class AddEmployeeComponent implements OnInit {
     private employeeService: EmployeeService,
     private fb: FormBuilder,
     private commonService: CommonService,
+    private router: Router,
     private confirmationService: NgxBootstrapConfirmService
   ) { 
     this.departmentList.push({TEXT: "Software", VALUE: 1});
@@ -69,6 +71,7 @@ export class AddEmployeeComponent implements OnInit {
       if (responseData.success) {
         this.commonService.toastSuccess(responseData.message);
         this.saveForm.reset();
+        this.router.navigate(['/employee']);
         // this.getAllProject();
       }
     });
