@@ -8,6 +8,7 @@ import { ProjectlistComponent } from "./components/project-list/project-list.com
 import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
 import { EmployeeComponent } from "./components/employee/employee.component";
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
+import { EditEmployeeComponent } from "./components/edit-employee/edit-employee.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
             { path: 'project', component: ProjectlistComponent },
             { path: 'employee', component: EmployeeComponent },
             { path: 'employee/add', component: AddEmployeeComponent },
+            { path: 'employee/update', component: EditEmployeeComponent },
           
         ]
     }

@@ -12,6 +12,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ChartsModule } from 'ng2-charts';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
     declarations: [
         UserComponent,
@@ -19,16 +21,18 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
         ProjectlistComponent,
         AdminDashboardComponent,
         EmployeeComponent,
-        AddEmployeeComponent
+        AddEmployeeComponent,
+        EditEmployeeComponent,
     ],
     imports: [
-        CommonModule,
+        CommonModule,   
         StructureModule,
         UserRoutingModule,
         ReactiveFormsModule,
         FormsModule,
         NgxBootstrapConfirmModule,
-        ChartsModule
+        ChartsModule,
+        NgbModule
     ],
     providers: [],
     bootstrap: [UserComponent]

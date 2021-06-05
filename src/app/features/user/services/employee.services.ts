@@ -17,7 +17,7 @@ export class EmployeeService {
   }
 
   public updateProject(params) {
-    return this.apiService.request("PUT", 'Project/CreateProject', params)
+    return this.apiService.request("PUT", 'employee/update-employee', params)
   }
 
   public deleteProject(id) {

@@ -89,7 +89,7 @@
                   <td>{{ employee.lastName }}</td>
                   <td>{{ employee.joiningDate| date }}</td>
                   <td>{{ employee.dob |date }}</td>
-                  <td><button class="btn btn-sm" (click)="onClickEdit(employee.id, i)">Edit</button></td>
+                  <td><button class="btn btn-sm" (click)="onClickEdit(employee)">Edit</button></td>
                   <td><button class="btn btn-sm" (click)="onClickDelete(employee.id, i)">Delete</button></td>
                 </tr>
               </tbody>

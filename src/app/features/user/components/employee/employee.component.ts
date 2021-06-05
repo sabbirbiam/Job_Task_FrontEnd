@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataComService } from 'src/app/shared/services/data-com.service';
 import { Employee } from '../../model/employee-model';
 import { EmployeeService } from '../../services/employee.services';
 
@@ -13,6 +15,8 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
+    private dataCom: DataComService,
+    private router: Router
   ) {
 
    }
@@ -37,6 +41,13 @@ export class EmployeeComponent implements OnInit {
       console.log("this.employeeList", this.employeeList);
       
     })
+  }
+
+  onClickEdit(row) {
+
+    console.log("row", row);
+    this.dataCom.setPassedItemData(row);
+    this.router.navigate(['/employee/update']);
   }
 
 }
