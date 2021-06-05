@@ -9,6 +9,8 @@ import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dash
 import { EmployeeComponent } from "./components/employee/employee.component";
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
 import { EditEmployeeComponent } from "./components/edit-employee/edit-employee.component";
+import { LeaveComponent } from "./components/leave/leave.component";
+import { AddLeaveComponent } from "./components/add-leave/add-leave.component";
 
 
 const routes: Routes = [
@@ -23,6 +25,8 @@ const routes: Routes = [
             { path: 'employee', component: EmployeeComponent },
             { path: 'employee/add', component: AddEmployeeComponent },
             { path: 'employee/update', component: EditEmployeeComponent },
+            { path: 'leave', component: LeaveComponent },
+            { path: 'leave/add', component: AddLeaveComponent },
           
         ]
     }

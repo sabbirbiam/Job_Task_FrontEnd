@@ -1,0 +1,40 @@
+<div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="card">
+          <h6 class="card-header">Leave List</h6>  
+          <a class="reference-button add-button  mt-1 mb-2 mt-sm-2" id="employeeAdd" mat-raised-button
+                routerLink="/leave/add">
+                <span>Add New Leave</span>
+              </a>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 10px">Serial</th>
+                  <th>Description</th>
+                  <th>Start Date</th>
+                  <th>End Date</th> 
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of leaveList; let i = index">
+                  <td>{{ i+1 }}</td>
+                  <td>{{ employee.description }}</td> 
+                  <td>{{ employee.strarDate| date }}</td>
+                  <td>{{ employee.endDate |date }}</td>
+                  <td><button class="btn btn-sm" (click)="onClickEdit(employee)">Edit</button></td>
+                  <td><button class="btn btn-sm" (click)="onClickDelete(employee.id, i)">Delete</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>
