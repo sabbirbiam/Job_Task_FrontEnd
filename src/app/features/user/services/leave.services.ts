@@ -16,8 +16,8 @@ export class LeaveService {
     return this.apiService.request('POST', `leave/create-leave`, params);
   }
 
-  public updateProject(params) {
-    return this.apiService.request("PUT", 'employee/update-employee', params)
+  public updateLeave(params) {
+    return this.apiService.request("PUT", 'leave/update-leave', params)
   }
 
   public deleteProject(id) {

@@ -21,13 +21,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let employee of leaveList; let i = index">
+                <tr *ngFor="let leave of leaveList; let i = index">
                   <td>{{ i+1 }}</td>
-                  <td>{{ employee.description }}</td> 
-                  <td>{{ employee.strarDate| date }}</td>
-                  <td>{{ employee.endDate |date }}</td>
-                  <td><button class="btn btn-sm" (click)="onClickEdit(employee)">Edit</button></td>
-                  <td><button class="btn btn-sm" (click)="onClickDelete(employee.id, i)">Delete</button></td>
+                  <td>{{ leave.description }}</td> 
+                  <td>{{ leave.strarDate| date }}</td>
+                  <td>{{ leave.endDate |date }}</td>
+                  <td><button class="btn btn-sm" (click)="onClickEdit(leave)">Edit</button></td>
+                  <td><button class="btn btn-sm" (click)="onClickDelete(leave.id, i)">Delete</button></td>
                 </tr>
               </tbody>
             </table>

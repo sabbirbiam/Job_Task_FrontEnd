@@ -16,6 +16,7 @@ import { EditEmployeeComponent } from './components/edit-employee/edit-employee.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeaveComponent } from './components/leave/leave.component';
 import { AddLeaveComponent } from './components/add-leave/add-leave.component';
+import { EditLeaveComponent } from './components/edit-leave/edit-leave.component';
 @NgModule({
     declarations: [
         UserComponent,
@@ -27,6 +28,7 @@ import { AddLeaveComponent } from './components/add-leave/add-leave.component';
         EditEmployeeComponent,
         LeaveComponent,
         AddLeaveComponent,
+        EditLeaveComponent,
     ],
     imports: [
         CommonModule,   

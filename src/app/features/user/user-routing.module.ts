@@ -11,6 +11,7 @@ import { AddEmployeeComponent } from "./components/add-employee/add-employee.com
 import { EditEmployeeComponent } from "./components/edit-employee/edit-employee.component";
 import { LeaveComponent } from "./components/leave/leave.component";
 import { AddLeaveComponent } from "./components/add-leave/add-leave.component";
+import { EditLeaveComponent } from "./components/edit-leave/edit-leave.component";
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
             { path: 'employee/update', component: EditEmployeeComponent },
             { path: 'leave', component: LeaveComponent },
             { path: 'leave/add', component: AddLeaveComponent },
+            { path: 'leave/update', component: EditLeaveComponent },
           
         ]
     }

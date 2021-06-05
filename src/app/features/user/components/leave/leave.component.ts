@@ -37,4 +37,14 @@ export class LeaveComponent implements OnInit {
     })
   }
 
+  /**
+   * onClickEdit
+   */
+  public onClickEdit(row): void {
+    
+    console.log("leave row", row);
+    this.dataCom.setPassedItemData(row);
+    this.router.navigate(['/leave/update']);
+  }
+
 }

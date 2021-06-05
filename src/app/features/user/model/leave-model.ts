@@ -3,14 +3,14 @@ export class Leave {
   department: number;
   employeeId: string;
   strarDate: Date;
-  LeaveType: number;
+  leaveType: number;
   id: string;
   endDate: Date;
   description: string; 
 
   constructor(options: any = {}) {
     this.id = options.id || "";
-    this.LeaveType = options.LeaveType || null;
+    this.leaveType = options.leaveType || null;
     this.description = options.description || ""; 
     this.employeeId = options.employeeId || "";
     this.department = options.department || "";
