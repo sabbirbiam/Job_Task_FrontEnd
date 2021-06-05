@@ -1,0 +1,128 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header mt-1">Search Here </div>
+    <div class="card-body">
+      <form [formGroup]="searchForm" autocomplete="off" (ngSubmit)="onSubmit()" class="d-flex w-100">
+        <div class="form-group" *ngIf="webStorageService.isAdmin()">
+          <label>Select Project</label>
+          <select class="form-control" formControlName="ProjectId" name="ProjectId">
+            <option value="">Please Select a Project</option>
+            <option *ngFor="let project of projectList" [value]="project.id">{{project.title}}</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="webStorageService.isAdmin()">
+          <label>Select users</label>
+          <select class="form-control" formControlName="UserId" name="userId">
+            <option value="">Please Select a User</option>
+            <option *ngFor="let user of userList" [value]="user.id">{{user.username}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Start Date:</label>
+          <input type="date" class="form-control" formControlName="dateFrom" name="dateFrom">
+
+        </div>
+        <div class="form-group">
+          <label>End Date:</label>
+          <input type="date" class="form-control" formControlName="dateTo" name="dateTo">
+        </div>
+
+        <div>
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <button class="btn btn-block btn-primary" type="submit">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header mt-1">Project wise Report </div>
+        <div class="card-body">
+          <canvas baseChart width="100%" height="100%" style="max-width: 130px;" class="ml-auto mr-auto"
+            [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" [legend]='false'
+            [options]="doughnutChartOptions" [colors]="donutColors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="webStorageService.isAdmin()">
+      <div class="card">
+        <div class="card-header mt-1">User wise Report</div>
+        <div class="card-body">
+          <canvas baseChart width="100%" height="100%" style="max-width: 130px;" class="ml-auto mr-auto"
+            [data]="doughnutChartData2" [labels]="doughnutChartLabels2" [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" [legend]='false'
+            [options]="doughnutChartOptions" [colors]="donutColors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header mt-1">
+      
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="cursor-pointer" [ngClass]="(activeTabIndex===0)?'nav-link active':'nav-link'" aria-current="page"
+            (click)="activeTabIndex=0">Rerpot Summery Project Wise</a>
+        </li>
+        <li class="nav-item" *ngIf="webStorageService.isAdmin()">
+          <a class="cursor-pointer" [ngClass]="(activeTabIndex===1)?'nav-link active':'nav-link'"
+            (click)="activeTabIndex=1">Rerpot Summery User Wise</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body" *ngIf="activeTabIndex === 0">
+      <div *ngFor="let item of allReportProjectWise;let i = index;" class="report-item">
+        <button class="accordion report-item__title" (click)="toggleAccordian($event, i)"> 
+          <span>{{item.projectTitle}}</span><span>+</span>
+        </button>
+        <div class="panel report-item__panel"  hide="!item.isActive">
+          <div>
+            <table class="table">
+              <tr>
+                <th>User Name</th>
+                <th>Activity Total Duration</th>
+                <th>Activity Total Score</th>
+              </tr>
+              <tr *ngFor="let child of item.userList">
+                <td>{{child.username}}</td>
+                <td>{{child.userActivityTotalDuration}}</td>
+                <td>{{child.userActivityTotalScore}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" *ngIf="activeTabIndex === 1">
+      <div *ngFor="let item of allReportUserWise;let i = index;" class="report-item">
+        <button class="accordion report-item__title" (click)="toggleAccordian($event, i)"> 
+          <span>{{item.username}}</span><span>+</span>
+        </button>
+        <div class="panel report-item__panel"  hide="!item.isActive">
+          <div>
+            <table class="table">
+              <tr>
+                <th>User Name</th>
+                <th>Activity Total Duration</th>
+                <th>Activity Total Score</th>
+              </tr>
+              <tr *ngFor="let child of item.projectList">
+                <td>{{child.projectTitle}}</td>
+                <td>{{child.projectActivityTotalDuration}}</td>
+                <td>{{child.projectActivityTotalScore}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

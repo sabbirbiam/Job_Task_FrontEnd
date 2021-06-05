@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">User Screen</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="cursor-pointer" [ngClass]="(activeTabIndex===0)?'nav-link active':'nav-link'" aria-current="page"
+            (click)="activeTabIndex=0">Project Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="cursor-pointer" [ngClass]="(activeTabIndex===1)?'nav-link active':'nav-link'"
+            (click)="activeTabIndex=1">Project Assign</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" *ngIf="activeTabIndex === 1">
+    <div class="col-md-4">
+      <div class="card">
+        <h6 class="card-header">Project Assign</h6>
+        <div class="card-body">
+          <form [formGroup]="projectAssignForm" autocomplete="off" (ngSubmit)="onAssign()">
+            <span
+              *ngIf="projectAssignForm.get('ProjectId').touched && projectAssignForm.get('ProjectId').hasError('required')"
+              class="text-danger">
+              Required</span>
+            <div class="form-group">
+              <select class="form-control" formControlName="ProjectId" name="ProjectId">
+                <option value="">Please Select a Project</option>
+                <option  *ngFor="let project of projectList" [value]="project.id">{{project.title}}</option>
+
+                
+              </select>
+            </div>
+            <span
+              *ngIf="projectAssignForm.get('UserIds').touched && projectAssignForm.get('UserIds').hasError('required')"
+              class="text-danger">
+              Required</span>
+            <div class="form-group">
+              <label>Select users</label>
+              <select class="form-control" formControlName="UserIds" name="UserIds" multiple="true">
+                <ng-container *ngFor="let user of userList">
+                  <option  *ngIf="isShowOption(user.id)" [value]="user.id">{{user.username}}</option>
+                </ng-container>
+              </select>
+            </div>
+            <button class="btn btn-block btn-primary" type="submit">
+              Assign 
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="activeTabIndex === 0">
+    <div class="col-md-8 ">
+      <div class="card">
+        <h6 class="card-header">Project List</h6>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 10px">Serial</th>
+                <th>Project Title</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let project of projectList; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ project.title }}</td>
+                <td><button class="btn btn-sm" (click)="onClickDelete(project.id, i)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <h6 class="card-header">Add new project</h6>
+        <div class="card-body">
+          <form [formGroup]="saveForm" autocomplete="off" (ngSubmit)="onSubmit()">
+            <span *ngIf="saveForm.get('title').touched && saveForm.get('title').hasError('required')"
+              class="text-danger">
+              Required</span>
+            <div class="form-group">
+              <input type="text" class="form-control" formControlName="title" name="title" placeholder="Project Title">
+            </div>
+            <button class="btn btn-block btn-primary" type="submit">
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
