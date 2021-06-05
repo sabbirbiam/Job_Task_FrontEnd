@@ -2,7 +2,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from '@angular/core';
 import { UserComponent } from './user.component';
-import { UserDashboardComponent } from "./components/user-dashboard/user-dashboard.component";
 import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
 import { EmployeeComponent } from "./components/employee/employee.component";
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
