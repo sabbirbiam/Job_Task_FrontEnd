@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
+import { CommonService } from 'src/app/shared/services/common.service';
 import { DataComService } from 'src/app/shared/services/data-com.service';
 import { Employee } from '../../model/employee-model';
 import { EmployeeService } from '../../services/employee.services';
@@ -14,11 +15,15 @@ export class EmployeeComponent implements OnInit {
 
   public employeeList = [];
 
+  pageIndex: number = 1;
+  pageSize: number = 2;
+
   constructor(
     private employeeService: EmployeeService,
     private dataCom: DataComService,
     private router: Router,
-    private confirmationService: NgxBootstrapConfirmService
+    private confirmationService: NgxBootstrapConfirmService,
+    private commonService: CommonService
   ) {
 
   }
@@ -72,6 +77,34 @@ export class EmployeeComponent implements OnInit {
             this.employeeList = this.employeeList.filter(item => item.id !== id);
           }
         })
+      }
+
+    })
+  }
+
+  /**
+   * onClickSearchEmployee
+   */
+  public onClickSearchEmployee(): void {
+
+    if(this.pageIndex <= 0) {
+      this.commonService.toastInfo("Page Index must be gether than zero");
+      return;
+    }
+
+    if(this.pageSize <= 0) {
+      this.commonService.toastInfo("Page Size must be gether than zero");
+      return;
+    }
+
+    this.employeeList.length = 0;
+
+    this.employeeService.getEmployeeistByPagination(this.pageIndex, this.pageSize).subscribe(result => {
+
+      if (result['success']) {
+        result['data'].map(e => {
+          this.employeeList.push(new Employee(e))
+        });
       }
 
     })

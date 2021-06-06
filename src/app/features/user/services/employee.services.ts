@@ -9,7 +9,12 @@ export class EmployeeService {
   constructor(private apiService: BaseDataService) { }
   
   public getEmployeeist(){
+    // return this.apiService.get("employee/get-all-employee/12/14");
     return this.apiService.get(`employee/get-all-employee`);
+  }
+
+  public getEmployeeistByPagination(pageIndex: number, pageSize: number){ 
+    return this.apiService.get(`employee/get-all-employee-pagination/${pageIndex}/${pageSize}`);
   }
 
   public saveProject(params) {
