@@ -46,7 +46,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   performFilter(filterBy: string): Employee[] {
-    debugger;
+    // debugger;
     filterBy = filterBy.toLocaleLowerCase();
     return this.employeeList.filter((employee: Employee) => 
     employee.firstName.toLocaleLowerCase().includes(filterBy));
