@@ -14,8 +14,10 @@ import { LeaveService } from '../../services/leave.services';
 export class LeaveComponent implements OnInit {
 
   leaveList = [];
+  leaveListSearch = [];
   pageIndex: number = 1;
   pageSize: number = 2;
+  private _listFilter = '';
 
   constructor(
     private leaveService: LeaveService,
@@ -27,8 +29,28 @@ export class LeaveComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllLeave();
+    // this.getAllLeave();
   }
+
+  get listFilterSearch() {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.leaveListSearch = this.performFilter(value);
+  }
+
+  performFilter(filterBy: string): Leave[] {
+    debugger;
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.leaveList.filter((leave: Leave) => 
+    leave.description.toLocaleLowerCase().includes(filterBy));
+    // return this.employeeList.filter((employee: Employee) => {
+    //   employee.firstName.toLocaleLowerCase().includes(filterBy); 
+    // })
+  }
+
 
   private getAllLeave(): void {
 
@@ -73,6 +95,7 @@ export class LeaveComponent implements OnInit {
             // debugger;
             if (res["success"]) {
               this.leaveList = this.leaveList.filter(item => item.id !== id);
+              this.leaveListSearch = this.leaveListSearch.filter(item => item.id !== id);
             }
           })
         }
@@ -96,12 +119,14 @@ export class LeaveComponent implements OnInit {
     }
 
     this.leaveList.length = 0;
+    this.leaveListSearch.length = 0;
 
     this.leaveService.getLeaveByPagination(this.pageIndex, this.pageSize).subscribe(result => {
 
       if(result['success']) {
         result['data'].map(e => {
-          this.leaveList.push(new Leave(e))
+          this.leaveList.push(new Leave(e));
+          this.leaveListSearch.push(new Leave(e));
         });
       } 
 

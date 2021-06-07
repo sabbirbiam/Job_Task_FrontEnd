@@ -73,6 +73,13 @@
           </div>
         </div>
         <div class="card-body">
+          <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+              <input type='text'
+                     [(ngModel)]='listFilter' />
+            </div>
+          </div>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -87,7 +94,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let leave of leaveList; let i = index">
+              <tr *ngFor="let leave of leaveListSearch; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ leave.description }}</td>
                 <td>{{ leave.leaveType == 1 ? "Casual" : "Sick" }}</td>

@@ -42,10 +42,11 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getAllEmployee();
+    // this.getAllEmployee();
   }
 
   performFilter(filterBy: string): Employee[] {
+    debugger;
     filterBy = filterBy.toLocaleLowerCase();
     return this.employeeList.filter((employee: Employee) => 
     employee.firstName.toLocaleLowerCase().includes(filterBy));
