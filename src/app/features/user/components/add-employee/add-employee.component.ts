@@ -34,7 +34,7 @@ export class AddEmployeeComponent implements OnInit {
       firstName: ['', Validators.required],
       middleName: [''],
       lastName: [''],
-      department: [''],
+      department: [1],
       designation: [''],
       joiningDate: [''],
       dob: [''],
@@ -47,15 +47,33 @@ export class AddEmployeeComponent implements OnInit {
   public onSubmit(): void {
     
     // debugger;
-    if (!this.saveForm.valid) return;
+    if (!this.saveForm.valid) 
+    {
+      this.commonService.toastWarning("Please Enter the mandatory fields");
+      return;
+    }
+    
 
     const firstName = this.saveForm.value.firstName;
     const middleName = this.saveForm.value.middleName;
     const lastName = this.saveForm.value.lastName;
     const designation = this.saveForm.value.designation;
     const department = this.saveForm.value.department;
-    const joiningDate = this.saveForm.value.joiningDate;
-    const dob = this.saveForm.value.dob;
+    debugger;
+    const joiningDate = this.saveForm.value.joiningDate
+    ? new Date(
+        this.saveForm.value.joiningDate.year,
+        this.saveForm.value.joiningDate.month - 1,
+        this.saveForm.value.joiningDate.day
+      )
+    : null;
+  const dob = this.saveForm.value.dob
+    ? new Date(
+        this.saveForm.value.dob.year,
+        this.saveForm.value.dob.month - 1,
+        this.saveForm.value.dob.day
+      )
+    : null;
 
     let saveObj = {
       firstName: firstName,
@@ -71,8 +89,7 @@ export class AddEmployeeComponent implements OnInit {
       if (responseData.success) {
         this.commonService.toastSuccess(responseData.message);
         this.saveForm.reset();
-        this.router.navigate(['/employee']);
-        // this.getAllProject();
+        this.router.navigate(['/employee']); 
       }
     });
   }

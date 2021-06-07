@@ -42,7 +42,7 @@ export class LeaveComponent implements OnInit {
   }
 
   performFilter(filterBy: string): Leave[] {
-    debugger;
+    // debugger;
     filterBy = filterBy.toLocaleLowerCase();
     return this.leaveList.filter((leave: Leave) => 
     leave.description.toLocaleLowerCase().includes(filterBy));

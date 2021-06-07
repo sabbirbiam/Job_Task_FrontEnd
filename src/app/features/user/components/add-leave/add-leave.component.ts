@@ -54,7 +54,7 @@ export class AddLeaveComponent implements OnInit {
       strarDate: [''],
       endDate: [''],
       employeeId: [''],
-      leaveType: [''], 
+      leaveType: [1], 
     });
   }
 
@@ -63,8 +63,11 @@ export class AddLeaveComponent implements OnInit {
    */
    public onSubmit(): void {
     
-    debugger;
-    if (!this.saveForm.valid) return;
+    if (!this.saveForm.valid) 
+    {
+      this.commonService.toastWarning("Please Enter the mandatory fields");
+      return;
+    }
 
     const description = this.saveForm.value.description;
     const strarDate = this.saveForm.value.strarDate
@@ -83,6 +86,11 @@ export class AddLeaveComponent implements OnInit {
     : null;
     const leaveType = this.saveForm.value.leaveType; 
     const employeeId = this.saveForm.value.employeeId; 
+    if (!employeeId) 
+    {
+      this.commonService.toastWarning("Please Select a employee");
+      return;
+    }
 
     let saveObj = {
       employeeId: employeeId,

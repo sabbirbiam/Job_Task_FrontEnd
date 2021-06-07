@@ -79,15 +79,27 @@ export class EditEmployeeComponent implements OnInit {
    * onSubmit
    */
   public onSubmit(): void {
-    if (!this.employeeForm.valid) return;
 
-    debugger;
+    if (!this.employeeForm.valid) 
+    {
+      this.commonService.toastWarning("Please Enter the mandatory fields");
+      return;
+    }
+    
+
+    // debugger;
     const id = this.employeeForm.value.id;
+    if (!this.employeeForm.valid) 
+    {
+      this.commonService.toastWarning("Please Enter the mandatory fields");
+      return;
+    }
     const firstName = this.employeeForm.value.firstName;
     const middleName = this.employeeForm.value.middleName;
     const lastName = this.employeeForm.value.lastName;
     const designation = this.employeeForm.value.designation;
     const department = this.employeeForm.value.department;
+    // debugger;
     const joiningDate = this.employeeForm.value.joiningDate
       ? new Date(
           this.employeeForm.value.joiningDate.year,
