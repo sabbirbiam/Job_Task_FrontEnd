@@ -7,10 +7,12 @@ export class Leave {
   id: string;
   endDate: Date;
   description: string; 
+  empName: string; 
 
   constructor(options: any = {}) {
     this.id = options.id || "";
     this.leaveType = options.leaveType || null;
+    this.empName = options.empName || ""; 
     this.description = options.description || ""; 
     this.employeeId = options.employeeId || "";
     this.department = options.department || "";

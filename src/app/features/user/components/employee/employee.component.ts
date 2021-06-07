@@ -14,9 +14,12 @@ import { EmployeeService } from '../../services/employee.services';
 export class EmployeeComponent implements OnInit {
 
   public employeeList = [];
+  public employeeListSearch = [];
 
   pageIndex: number = 1;
   pageSize: number = 2;
+
+  private _listFilter = '';
 
   constructor(
     private employeeService: EmployeeService,
@@ -28,10 +31,29 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  get listFilter() {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.employeeListSearch = this.performFilter(value);
+  }
+
   ngOnInit(): void {
 
     this.getAllEmployee();
   }
+
+  performFilter(filterBy: string): Employee[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.employeeList.filter((employee: Employee) => 
+    employee.firstName.toLocaleLowerCase().includes(filterBy));
+    // return this.employeeList.filter((employee: Employee) => {
+    //   employee.firstName.toLocaleLowerCase().includes(filterBy); 
+    // })
+  }
+
 
   private getAllEmployee(): void {
 
@@ -41,7 +63,8 @@ export class EmployeeComponent implements OnInit {
       // debugger;
       if (result['success']) {
         result['data'].map(e => {
-          this.employeeList.push(new Employee(e))
+          this.employeeList.push(new Employee(e));
+          this.employeeListSearch.push(new Employee(e));
         });
       }
 
@@ -75,6 +98,8 @@ export class EmployeeComponent implements OnInit {
           // debugger;
           if (res["success"]) {
             this.employeeList = this.employeeList.filter(item => item.id !== id);
+            this.employeeListSearch = this.employeeListSearch.filter(item => item.id !== id);
+
           }
         })
       }
@@ -87,23 +112,25 @@ export class EmployeeComponent implements OnInit {
    */
   public onClickSearchEmployee(): void {
 
-    if(this.pageIndex <= 0) {
+    if (this.pageIndex <= 0) {
       this.commonService.toastInfo("Page Index must be gether than zero");
       return;
     }
 
-    if(this.pageSize <= 0) {
+    if (this.pageSize <= 0) {
       this.commonService.toastInfo("Page Size must be gether than zero");
       return;
     }
 
     this.employeeList.length = 0;
+    this.employeeListSearch.length = 0;
 
     this.employeeService.getEmployeeistByPagination(this.pageIndex, this.pageSize).subscribe(result => {
 
       if (result['success']) {
         result['data'].map(e => {
-          this.employeeList.push(new Employee(e))
+          this.employeeList.push(new Employee(e));
+          this.employeeListSearch.push(new Employee(e));
         });
       }
 

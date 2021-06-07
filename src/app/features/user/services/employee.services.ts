@@ -27,8 +27,5 @@ export class EmployeeService {
 
   public deleteEmployee(id) {
     return this.apiService.request("DELETE", `employee/delete-employee-by-id/${id}`);
-  }
-  public assignUserToProject(params) {
-    return this.apiService.request("POST", `Project/AssignUserToProject`, params);
-  }
+  } 
 }

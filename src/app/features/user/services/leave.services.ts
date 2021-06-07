@@ -16,14 +16,15 @@ export class LeaveService {
     return this.apiService.request('POST', `leave/create-leave`, params);
   }
 
+  public getLeaveByPagination(pageIndex: number, pageSize: number){ 
+    return this.apiService.get(`leave/get-all-leave-pagination/${pageIndex}/${pageSize}`);
+  }
+
   public updateLeave(params) {
     return this.apiService.request("PUT", 'leave/update-leave', params)
   }
 
   public deleteLeave(id) {
     return this.apiService.request("DELETE", `leave/delete-leave-by-id/${id}`);
-  }
-  public assignUserToProject(params) {
-    return this.apiService.request("POST", `Project/AssignUserToProject`, params);
   }
 }

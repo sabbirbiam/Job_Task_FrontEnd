@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
+import { CommonService } from 'src/app/shared/services/common.service';
 import { DataComService } from 'src/app/shared/services/data-com.service';
 import { Leave } from '../../model/leave-model';
 import { LeaveService } from '../../services/leave.services';
@@ -13,11 +14,15 @@ import { LeaveService } from '../../services/leave.services';
 export class LeaveComponent implements OnInit {
 
   leaveList = [];
+  pageIndex: number = 1;
+  pageSize: number = 2;
+
   constructor(
     private leaveService: LeaveService,
     private dataCom: DataComService,
     private router: Router,
-    private confirmationService: NgxBootstrapConfirmService
+    private confirmationService: NgxBootstrapConfirmService,
+    private commonService: CommonService
 
   ) { }
 
@@ -74,5 +79,33 @@ export class LeaveComponent implements OnInit {
   
       })
     }
+
+    /**
+   * onClickSearchEmployee
+   */
+  public onClickSearchEmployee(): void {
+
+    if(this.pageIndex <= 0) {
+      this.commonService.toastInfo("Page Index must be gether than zero");
+      return;
+    }
+
+    if(this.pageSize <= 0) {
+      this.commonService.toastInfo("Page Size must be gether than zero");
+      return;
+    }
+
+    this.leaveList.length = 0;
+
+    this.leaveService.getLeaveByPagination(this.pageIndex, this.pageSize).subscribe(result => {
+
+      if(result['success']) {
+        result['data'].map(e => {
+          this.leaveList.push(new Leave(e))
+        });
+      } 
+
+    })
+  }
 
 }
