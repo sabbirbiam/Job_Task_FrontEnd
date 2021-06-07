@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
@@ -13,7 +13,7 @@ import { LeaveService } from '../../services/leave.services';
   templateUrl: './edit-leave.component.html',
   styleUrls: ['./edit-leave.component.css']
 })
-export class EditLeaveComponent implements OnInit {
+export class EditLeaveComponent implements OnInit, OnDestroy {
 
   public saveForm: FormGroup;
   public leaveTypeList = [];
@@ -133,6 +133,10 @@ export class EditLeaveComponent implements OnInit {
       month: date.getMonth() + 1,
       day: date.getDate(),
     };
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

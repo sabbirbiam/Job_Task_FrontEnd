@@ -59,7 +59,7 @@ export class AddEmployeeComponent implements OnInit {
     const lastName = this.saveForm.value.lastName;
     const designation = this.saveForm.value.designation;
     const department = this.saveForm.value.department;
-    debugger;
+    // debugger;
     const joiningDate = this.saveForm.value.joiningDate
     ? new Date(
         this.saveForm.value.joiningDate.year,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { EmployeeService } from '../../services/employee.services';
   templateUrl: './edit-employee.component.html',
   styleUrls: ['./edit-employee.component.css'],
 })
-export class EditEmployeeComponent implements OnInit {
+export class EditEmployeeComponent implements OnInit, OnDestroy {
   public employeeForm: FormGroup;
   public departmentList = [];
   subscription: Subscription;
@@ -80,17 +80,15 @@ export class EditEmployeeComponent implements OnInit {
    */
   public onSubmit(): void {
 
-    if (!this.employeeForm.valid) 
-    {
+    if (!this.employeeForm.valid) {
       this.commonService.toastWarning("Please Enter the mandatory fields");
       return;
     }
-    
+
 
     // debugger;
     const id = this.employeeForm.value.id;
-    if (!this.employeeForm.valid) 
-    {
+    if (!this.employeeForm.valid) {
       this.commonService.toastWarning("Please Enter the mandatory fields");
       return;
     }
@@ -102,17 +100,17 @@ export class EditEmployeeComponent implements OnInit {
     // debugger;
     const joiningDate = this.employeeForm.value.joiningDate
       ? new Date(
-          this.employeeForm.value.joiningDate.year,
-          this.employeeForm.value.joiningDate.month - 1,
-          this.employeeForm.value.joiningDate.day
-        )
+        this.employeeForm.value.joiningDate.year,
+        this.employeeForm.value.joiningDate.month - 1,
+        this.employeeForm.value.joiningDate.day
+      )
       : null;
     const dob = this.employeeForm.value.dob
       ? new Date(
-          this.employeeForm.value.dob.year,
-          this.employeeForm.value.dob.month - 1,
-          this.employeeForm.value.dob.day
-        )
+        this.employeeForm.value.dob.year,
+        this.employeeForm.value.dob.month - 1,
+        this.employeeForm.value.dob.day
+      )
       : null;
 
     let saveObj = {
@@ -132,8 +130,14 @@ export class EditEmployeeComponent implements OnInit {
       if (responseData.success) {
         this.commonService.toastSuccess(responseData.message);
         this.employeeForm.reset();
-        this.router.navigate(['/employee']); 
+        this.router.navigate(['/employee']);
       }
     });
   }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 }
